@@ -12,6 +12,27 @@ $(document).ready(function () {
     nextArrow: ".hero-control--next",
   });
 
+  $(".models-slider").slick({
+    infinite: true,
+    slidesToShow: 3,
+    prevArrow: ".models .slider-control--prev",
+    nextArrow: ".models .slider-control--next",
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  });
+
   //selects
 
   $("select").niceSelect();

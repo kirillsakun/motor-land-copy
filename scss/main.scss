@@ -188,6 +188,57 @@ body {
     }
   }
 }
+
+.slider-controls {
+  display: grid;
+  justify-content: center;
+  gap: 10px;
+  grid-template-columns: auto auto;
+  margin-top: 60px;
+
+  .slider-control {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    background-color: #ffffff;
+    z-index: 2;
+    border: 1px solid #ddd;
+    transition: 0.3s ease;
+
+    &:hover {
+      background-color: $default-color;
+      &::before {
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: calc(50% - 5px);
+      left: calc(50% - 5px);
+      display: block;
+      width: 10px;
+      height: 10px;
+      transition: inherit;
+      border-top: 2px solid #888888;
+      border-left: 2px solid #888888;
+    }
+    &--prev {
+      left: 0;
+      &::before {
+        transform: rotate(-45deg);
+      }
+    }
+    &--next {
+      right: 0;
+      &::before {
+        transform: rotate(135deg);
+      }
+    }
+  }
+}
+
 //sections
 
 .header {
@@ -524,6 +575,36 @@ body {
 
 .models {
   padding-top: 104px;
+  overflow: hidden;
+  &-slider {
+    position: relative;
+    .slick-list {
+      overflow: visible;
+    }
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      display: block;
+      height: 100%;
+      width: calc((100vw - 100%) / 2);
+      z-index: 2;
+      background-image: linear-gradient(
+        270deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 20%,
+        rgba(255, 255, 255, 1) 100%
+      );
+    }
+    &::before {
+      right: 100%;
+    }
+    &::after {
+      transform: rotate(0.5turn);
+      left: 100%;
+    }
+  }
   .card {
     &-img-top {
       height: 220px;
@@ -545,6 +626,7 @@ body {
       display: flex;
       border: 1px solid #eee;
       margin-bottom: 20px;
+      margin-top: 10px;
       &-item {
         font-weight: 500;
         font-size: 12px;
@@ -578,10 +660,10 @@ body {
         flex-direction: column;
         align-items: center;
       }
-      &-expand-lg .navbar-nav .nav-link{
+      &-expand-lg .navbar-nav .nav-link {
         font-size: 20px;
       }
-      .dropdown-item{
+      .dropdown-item {
         text-align: center;
       }
     }
